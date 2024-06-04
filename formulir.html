@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Pembelian</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            margin: 50px auto;
+            max-width: 600px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        header h1 {
+            font-weight: 700;
+            font-size: 1.8em;
+            color: #333333;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333333;
+            font-weight: 700;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="submit"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #70cede;
+            border-color: #70cede;
+            color: #ffffff;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4da8da;
+        }
+
+        .radio-group label {
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="./images/Air.png" alt="Logo Air Mineral Segar">
+                <h1>Air Mineral Segar</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Produk</a></li>
+                    <li><a href="cara-beli.html">Cara Beli</a></li>
+                    <li><a href="kontak.html">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="card">
+            <section id="formulir-pembelian">
+                <h2>Formulir Pembelian</h2>
+                <form action="proses-pembelian.php" method="POST">
+                    <div class="form-group">
+                        <label for="nama">Nama:</label>
+                        <input type="text" id="nama" name="nama" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alamat">Alamat Pengiriman:</label>
+                        <textarea id="alamat" name="alamat" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="produk">Produk:</label>
+                        <select id="produk" name="produk" required>
+                            <option value="Aqua">Aqua</option>
+                            <option value="Le Minerale">Le Minerale</option>
+                            <option value="Cleo">Cleo</option>
+                            <option value="Vit">Vit</option>
+                            <option value="Crystaline">Crystaline</option>
+                            <option value="Ades">Ades</option>
+                            <option value="Nestle Pure Life">Nestle Pure Life</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Metode Pembayaran:</label><br>
+                        <div class="radio-group">
+                            <input type="radio" id="transfer-bank" name="metode-pembayaran" value="transfer-bank"
+                                required>
+                            <label for="transfer-bank">Transfer Bank</label>
+                            <input type="radio" id="cash-on-delivery" name="metode-pembayaran"
+                                value="cash-on-delivery" required>
+                            <label for="cash-on-delivery">Cash on Delivery</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Beli Sekarang">
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mengambil nilai ID produk dari URL
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const productId = urlParams.get('product');
+    
+            // Menetapkan nilai ID produk ke pilihan produk dalam formulir pembelian
+            if(productId) {
+                document.getElementById('produk').value = productId;
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
